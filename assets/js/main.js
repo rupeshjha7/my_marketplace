@@ -1,17 +1,9 @@
-/**
-* Template Name: BizLand
-* Template URL: https://bootstrapmade.com/bizland-bootstrap-business-template/
-* Updated: Mar 17 2024 with Bootstrap v5.3.3
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
 
-(function() {
+
+(function () {
   "use strict";
 
-  /**
-   * Easy selector helper function
-   */
+
   const select = (el, all = false) => {
     el = el.trim()
     if (all) {
@@ -21,9 +13,7 @@
     }
   }
 
-  /**
-   * Easy event listener function
-   */
+
   const on = (type, el, listener, all = false) => {
     let selectEl = select(el, all)
     if (selectEl) {
@@ -35,16 +25,12 @@
     }
   }
 
-  /**
-   * Easy on scroll event listener 
-   */
+
   const onscroll = (el, listener) => {
     el.addEventListener('scroll', listener)
   }
 
-  /**
-   * Navbar links active state on scroll
-   */
+
   let navbarlinks = select('#navbar .scrollto', true)
   const navbarlinksActive = () => {
     let position = window.scrollY + 200
@@ -62,9 +48,6 @@
   window.addEventListener('load', navbarlinksActive)
   onscroll(document, navbarlinksActive)
 
-  /**
-   * Scrolls to an element with header offset
-   */
   const scrollto = (el) => {
     let header = select('#header')
     let offset = header.offsetHeight
@@ -80,9 +63,7 @@
     })
   }
 
-  /**
-   * Header fixed top on scroll
-   */
+
   let selectHeader = select('#header')
   if (selectHeader) {
     let headerOffset = selectHeader.offsetTop
@@ -100,9 +81,7 @@
     onscroll(document, headerFixed)
   }
 
-  /**
-   * Back to top button
-   */
+
   let backtotop = select('.back-to-top')
   if (backtotop) {
     const toggleBacktotop = () => {
@@ -116,29 +95,22 @@
     onscroll(document, toggleBacktotop)
   }
 
-  /**
-   * Mobile nav toggle
-   */
-  on('click', '.mobile-nav-toggle', function(e) {
+
+  on('click', '.mobile-nav-toggle', function (e) {
     select('#navbar').classList.toggle('navbar-mobile')
     this.classList.toggle('bi-list')
     this.classList.toggle('bi-x')
   })
 
-  /**
-   * Mobile nav dropdowns activate
-   */
-  on('click', '.navbar .dropdown > a', function(e) {
+  on('click', '.navbar .dropdown > a', function (e) {
     if (select('#navbar').classList.contains('navbar-mobile')) {
       e.preventDefault()
       this.nextElementSibling.classList.toggle('dropdown-active')
     }
   }, true)
 
-  /**
-   * Scrool with ofset on links with a class name .scrollto
-   */
-  on('click', '.scrollto', function(e) {
+
+  on('click', '.scrollto', function (e) {
     if (select(this.hash)) {
       e.preventDefault()
 
@@ -153,9 +125,7 @@
     }
   }, true)
 
-  /**
-   * Scroll with ofset on page load with hash links in the url
-   */
+
   window.addEventListener('load', () => {
     if (window.location.hash) {
       if (select(window.location.hash)) {
@@ -164,9 +134,7 @@
     }
   });
 
-  /**
-   * Preloader
-   */
+
   let preloader = select('#preloader');
   if (preloader) {
     window.addEventListener('load', () => {
@@ -174,51 +142,12 @@
     });
   }
 
-  /**
-   * Initiate glightbox
-   */
+
   const glightbox = GLightbox({
     selector: '.glightbox'
   });
 
-  /**
-   * Skills animation
-   */
-  let skilsContent = select('.skills-content');
-  if (skilsContent) {
-    new Waypoint({
-      element: skilsContent,
-      offset: '80%',
-      handler: function(direction) {
-        let progress = select('.progress .progress-bar', true);
-        progress.forEach((el) => {
-          el.style.width = el.getAttribute('aria-valuenow') + '%'
-        });
-      }
-    })
-  }
 
-  /**
-   * Testimonials slider
-   */
-  new Swiper('.testimonials-slider', {
-    speed: 600,
-    loop: true,
-    autoplay: {
-      delay: 5000,
-      disableOnInteraction: false
-    },
-    slidesPerView: 'auto',
-    pagination: {
-      el: '.swiper-pagination',
-      type: 'bullets',
-      clickable: true
-    }
-  });
-
-  /**
-   * Porfolio isotope and filter
-   */
   window.addEventListener('load', () => {
     let subscriptionContainer = select('.subscription-container');
     if (subscriptionContainer) {
@@ -228,9 +157,9 @@
 
       let subscriptionFilters = select('#subscription-flters li', true);
 
-      on('click', '#subscription-flters li', function(e) {
+      on('click', '#subscription-flters li', function (e) {
         e.preventDefault();
-        subscriptionFilters.forEach(function(el) {
+        subscriptionFilters.forEach(function (el) {
           el.classList.remove('filter-active');
         });
         this.classList.add('filter-active');
@@ -238,7 +167,7 @@
         subscriptionIsotope.arrange({
           filter: this.getAttribute('data-filter')
         });
-        subscriptionIsotope.on('arrangeComplete', function() {
+        subscriptionIsotope.on('arrangeComplete', function () {
           AOS.refresh()
         });
       }, true);
@@ -246,16 +175,12 @@
 
   });
 
-  /**
-   * Initiate subscription lightbox 
-   */
+
   const subscriptionLightbox = GLightbox({
     selector: '.subscription-lightbox'
   });
 
-  /**
-   * subscription details slider
-   */
+
   new Swiper('.subscription-details-slider', {
     speed: 400,
     loop: true,
@@ -270,9 +195,7 @@
     }
   });
 
-  /**
-   * Animation on scroll
-   */
+
   window.addEventListener('load', () => {
     AOS.init({
       duration: 1000,
@@ -282,9 +205,6 @@
     })
   });
 
-  /**
-   * Initiate Pure Counter 
-   */
-  new PureCounter();
+
 
 })()
